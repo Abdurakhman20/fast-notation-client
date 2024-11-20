@@ -20,6 +20,7 @@ export async function registerUserService(userData: IRegisterUserProps) {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify({ ...userData }),
     });
 
@@ -39,6 +40,7 @@ export async function loginUserService(userData: ILoginUserProps) {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify({ ...userData }),
     });
 

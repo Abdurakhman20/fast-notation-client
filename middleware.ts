@@ -1,5 +1,5 @@
-import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
+import { getUserMe } from "@/data/services/get-user-me";
 
 const protectedRoutes = ["/"];
 const publicRoutes = ["/signin", "/signup"];
@@ -9,14 +9,12 @@ function isProtectedRoute(path: string): boolean {
 }
 
 export async function middleware(request: NextRequest) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("refreshtoken")?.value;
-
+  const user = await getUserMe();
   const currentPath = request.nextUrl.pathname;
 
   if (
     isProtectedRoute(currentPath) &&
-    !token &&
+    user.ok === false &&
     !publicRoutes.includes(currentPath)
   ) {
     return NextResponse.redirect(new URL("/signin", request.url));

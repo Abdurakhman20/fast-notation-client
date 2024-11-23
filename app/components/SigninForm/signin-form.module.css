@@ -42,14 +42,14 @@
   cursor: default;
 }
 
-.passwordContainer {
+.password_container {
   position: relative;
 }
-.passwordInput {
+.password_input {
   width: 100%;
 }
 
-.togglePassword {
+.toggle_password {
   position: absolute;
   right: 10px;
   top: 50%;
@@ -57,8 +57,12 @@
   background: none;
   border: none;
   cursor: pointer;
-
   outline: none;
   padding: 0;
   margin: 0;
+}
+
+.to_signup {
+  text-align: center;
+  padding-top: 10px;
 }

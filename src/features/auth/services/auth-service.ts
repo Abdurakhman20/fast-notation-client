@@ -1,20 +1,8 @@
-interface IRegisterUserProps {
-  email: string;
-  firstname: string;
-  lastname: string;
-  username: string;
-  password: string;
-  passwordRepeat: string;
-}
-
-interface ILoginUserProps {
-  email: string;
-  password: string;
-}
+import { schemaRegisterType, schemaLoginType } from "@/features/auth/schemes";
 
 const baseUrl = "http://localhost:3001";
 
-export async function registerUserService(userData: IRegisterUserProps) {
+export async function registerUserService(userData: schemaRegisterType) {
   const url = new URL("/auth/register", baseUrl);
 
   try {
@@ -34,7 +22,7 @@ export async function registerUserService(userData: IRegisterUserProps) {
   }
 }
 
-export async function loginUserService(userData: ILoginUserProps) {
+export async function loginUserService(userData: schemaLoginType) {
   const url = new URL("/auth/login", baseUrl);
 
   try {

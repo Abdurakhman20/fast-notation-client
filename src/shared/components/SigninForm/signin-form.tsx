@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useActionState } from "react";
-import { loginUserAction } from "@/data/actions/auth-actions";
-import { ZodErrors } from "@/components/custom/zod-errors";
+import { loginUserAction } from "@/features/auth/actions/auth-actions";
+import { ZodErrors } from "../custom/zod-errors";
 import { ServerErrors } from "../custom/server-errors";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import cn from "classnames";

@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useActionState } from "react";
-import { registerUserAction } from "@/data/actions/auth-actions";
-import { ZodErrors } from "@/components/custom/zod-errors";
-import { ServerErrors } from "@/components/custom/server-errors";
+import { registerUserAction } from "@/features/auth/actions/auth-actions";
+import { ZodErrors } from "../custom/zod-errors";
+import { ServerErrors } from "../custom/server-errors";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import cn from "classnames";
 import styles from "./signup-form.module.css";

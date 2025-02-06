@@ -1,22 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getUserMe } from "@/data/services/get-user-me";
+import { getUserMe } from "./src/features/auth/services/get-user-me";
 
 const protectedRoutes = ["/"];
 const publicRoutes = ["/signin", "/signup"];
 
 function isProtectedRoute(path: string): boolean {
-  return protectedRoutes.some((route) => path.startsWith(route));
+  return protectedRoutes.some(route => path.startsWith(route));
 }
 
 export async function middleware(request: NextRequest) {
   const user = await getUserMe();
   const currentPath = request.nextUrl.pathname;
 
-  if (
-    isProtectedRoute(currentPath) &&
-    user.ok === false &&
-    !publicRoutes.includes(currentPath)
-  ) {
+  if (isProtectedRoute(currentPath) && user.ok === false && !publicRoutes.includes(currentPath)) {
     return NextResponse.redirect(new URL("/signin", request.url));
   }
 

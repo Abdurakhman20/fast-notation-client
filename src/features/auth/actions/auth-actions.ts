@@ -1,35 +1,9 @@
 "use server";
 
-import { z } from "zod";
-import { registerUserService, loginUserService } from "../services/auth-service";
+import { registerUserService, loginUserService } from "@/features/auth/services/auth-service";
+import { schemaRegister, schemaLogin } from "@/features/auth/schemes";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-
-const schemaRegister = z
-  .object({
-    email: z.string().email({
-      message: "Не правильный формат почты",
-    }),
-    firstname: z.string().min(1).max(25, {
-      message: "Длина имени должна быть от 1 до 25 символов",
-    }),
-    lastname: z.string().min(1).max(25, {
-      message: "Длина фамилии должна быть от 1 до 25 символов",
-    }),
-    username: z.string().min(1).max(25, {
-      message: "Длина имени пользователя должна быть от 1 до 25 символов",
-    }),
-    password: z.string().min(4).max(25, {
-      message: "Длина пароля должна быть от 4 до 25 символов",
-    }),
-    passwordRepeat: z.string().min(4).max(25, {
-      message: "Длина пароля должна быть от 4 до 25 символов",
-    }),
-  })
-  .refine(data => data.password === data.passwordRepeat, {
-    message: "пароли должны совпадать",
-    path: ["passwordRepeat"],
-  });
 
 const config = {
   maxAge: 60 * 60 * 24 * 1, // 1 day
@@ -81,15 +55,6 @@ export async function registerUserAction(prevState: any, formData: FormData) {
 
   redirect("/signin");
 }
-
-const schemaLogin = z.object({
-  email: z.string().email({
-    message: "Please enter a valid email address",
-  }),
-  password: z.string().min(4).max(25, {
-    message: "Password must be between 4 and 25 characters",
-  }),
-});
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function loginUserAction(prevState: any, formData: FormData) {

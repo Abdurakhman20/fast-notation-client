@@ -17,7 +17,6 @@ export async function registerUserService(userData: schemaRegisterType) {
 
     return response.json();
   } catch (error) {
-    console.error("Registration Service Error:", error);
     throw error;
   }
 }
@@ -37,7 +36,6 @@ export async function loginUserService(userData: schemaLoginType) {
 
     return response.json();
   } catch (error) {
-    console.error("Login Service Error:", error);
     throw error;
   }
 }

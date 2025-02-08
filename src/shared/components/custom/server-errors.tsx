@@ -1,3 +1,5 @@
+"use client";
+
 interface IServerError {
   error: string;
   message: string;
